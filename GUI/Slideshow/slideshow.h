@@ -31,8 +31,8 @@ private slots:
 private:
     Ui::Slideshow *ui;
     QPointer<QGraphicsScene> scene; // GraphicsScene to display images (smart pointer)
-    std::vector<QGraphicsPixmapItem> playlist; // vector of images in input directory
-    unsigned int imagesCount; // number of images in input directory
+    std::vector<QGraphicsPixmapItem*> playlist; // vector of images in input directory
+    int imagesCount; // number of images in input directory
 };
 
 #endif // SLIDESHOWCONTAINER_H

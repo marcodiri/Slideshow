@@ -1,8 +1,6 @@
 #include <QtWidgets/QApplication>
 #include "GUI/Slideshow/slideshow.h"
 
-#include <iostream>
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
