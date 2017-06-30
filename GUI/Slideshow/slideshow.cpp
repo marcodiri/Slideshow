@@ -8,6 +8,8 @@ Slideshow::Slideshow(QWidget *parent) :
     scene(new QGraphicsScene(this))
 {
     ui->setupUi(this);
+    int playerWidth = ui->imageView->width(), playerHeight = ui->imageView->height();
+    playerMinDimension = playerWidth > playerHeight ? playerWidth : playerHeight;
     connect(ui->browseBtn, &QAbstractButton::clicked, this, &Slideshow::browse); // connect browse button click with browse() function
     connect(ui->dirBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), this, &Slideshow::setPlaylist); // connect changes in comboBox with displayPlaylist() function passing its text
 
@@ -16,16 +18,6 @@ Slideshow::Slideshow(QWidget *parent) :
 
 Slideshow::~Slideshow() {
     delete ui;
-}
-
-void Slideshow::showEvent(QShowEvent *event) {
-    Q_UNUSED(event);
-    ui->imageView->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio); // fitInView has to be called after the object shows
-}
-
-void Slideshow::resizeEvent(QResizeEvent *event) {
-    Q_UNUSED(event);
-    ui->imageView->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio); // fitInView to fit resized window
 }
 
 void Slideshow::browse() {
@@ -44,7 +36,7 @@ void Slideshow::browse() {
     }
 }
 
-void Slideshow::setPlaylist(const QString &text) {
+void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
     if(!playlist.images.empty()) { // check if vector was already allocated, if so erase it
         playlist.images.clear();
     }
@@ -57,7 +49,13 @@ void Slideshow::setPlaylist(const QString &text) {
         imageDir = itr.next().absoluteFilePath(); // get image absolute path
         qInfo() << "Adding file: " + imageDir;
         try {
-            playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(QPixmap(imageDir))); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
+            QPixmap img(imageDir);
+            if(!img.isNull())
+                playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(QPixmap(imageDir).scaledToHeight(playerMinDimension))); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
+            else
+                throw (std::runtime_error("Missing file "+imageDir.toStdString()));
+        } catch (std::runtime_error& e) {
+            qCritical() << e.what();
         } catch(std::bad_alloc& e) {
             qCritical() << "Error allocating file " + imageDir;
         } catch(std::exception& e) {
@@ -65,6 +63,7 @@ void Slideshow::setPlaylist(const QString &text) {
             qCritical() << e.what();
         }
     }
+    displayPlaylist();
 }
 
 void Slideshow::displayPlaylist() {
