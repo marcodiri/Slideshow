@@ -1,5 +1,5 @@
 //
-// Created by Marco on 27/06/2017.
+// Container for slideshow dots indicator.
 //
 
 #ifndef SLIDESHOWWINDOWS_DOTSCONTAINER_H

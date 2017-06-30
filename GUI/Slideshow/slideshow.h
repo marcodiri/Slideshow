@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QPointer>
-#include <vector>
+#include "Playlist.h"
 
 namespace Ui {
 class Slideshow;
@@ -18,21 +18,18 @@ public:
     explicit Slideshow(QWidget *parent = 0);
     ~Slideshow();
 
-    const QPointer<QGraphicsScene>& getScene() const {
-        return scene;
-    }
-
     void showEvent(QShowEvent *event); // automatically called when instantiated Slideshow shows
-    void resizeEvent(QResizeEvent *event); // automatically called when instantiated Slideshow get resized
+    void resizeEvent(QResizeEvent *event); // automatically called when instantiated Slideshow gets resized
 
 private slots:
-    void browse();
+    void browse(); // browse disk to select images folder
+    void setPlaylist(const QString &text); // prepare playlist to be shown
 
 private:
+    void displayPlaylist(); // start the slideshow
     Ui::Slideshow *ui;
     QPointer<QGraphicsScene> scene; // GraphicsScene to display images (smart pointer)
-    std::vector<QGraphicsPixmapItem*> playlist; // vector of images in input directory
-    int imagesCount; // number of images in input directory
+    Playlist playlist; // structure containing images and useful information
 };
 
 #endif // SLIDESHOWCONTAINER_H
