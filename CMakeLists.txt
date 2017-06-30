@@ -78,7 +78,8 @@ elseif(APPLE)
 endif()
 
 set(SOURCE_FILES main.cpp GUI/Slideshow/slideshow.cpp GUI/Slideshow/slideshow.h
-        GUI/Slideshow/dotscontainer.cpp GUI/Slideshow/dotscontainer.h GUI/Slideshow/Playlist.h GUI/Slideshow/Utils.h ${QT_GEN_HEADERS} ${QT_CPP_GENERATED})
+        GUI/Slideshow/dotscontainer.cpp GUI/Slideshow/dotscontainer.h GUI/Slideshow/Playlist.h GUI/Slideshow/Utils.h GUI/Slideshow/SlideshowTimer.h
+        ${QT_GEN_HEADERS} ${QT_CPP_GENERATED})
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 add_dependencies(${PROJECT_NAME} ${QT_GENERATED})

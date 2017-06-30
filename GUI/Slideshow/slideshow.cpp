@@ -19,10 +19,12 @@ Slideshow::~Slideshow() {
 }
 
 void Slideshow::showEvent(QShowEvent *event) {
+    Q_UNUSED(event);
     ui->imageView->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio); // fitInView has to be called after the object shows
 }
 
 void Slideshow::resizeEvent(QResizeEvent *event) {
+    Q_UNUSED(event);
     ui->imageView->fitInView(scene->itemsBoundingRect(),Qt::KeepAspectRatio); // fitInView to fit resized window
 }
 
@@ -57,9 +59,9 @@ void Slideshow::setPlaylist(const QString &text) {
         try {
             playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(QPixmap(imageDir))); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
         } catch(std::bad_alloc& e) {
-            qCritical() << "Error allocating file " + itr.next().absoluteFilePath();
+            qCritical() << "Error allocating file " + imageDir;
         } catch(std::exception& e) {
-            qCritical() << "Error at file " + itr.next().absoluteFilePath();
+            qCritical() << "Error at file " + imageDir;
             qCritical() << e.what();
         }
     }

@@ -10,9 +10,10 @@
 #include <memory>
 
 struct Playlist {
-    Playlist() : imagesCount(0) {}
+    Playlist() : currentImage(0), imagesCount(0) {}
 
     std::vector<std::shared_ptr<QGraphicsPixmapItem>> images; // vector of images in input directory (smart pointer)
+    int currentImage;
     int imagesCount; // number of images in input directory
 };
 

@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QPointer>
 #include "Playlist.h"
+#include "SlideshowTimer.h"
 
 namespace Ui {
 class Slideshow;
@@ -30,6 +31,7 @@ private:
     Ui::Slideshow *ui;
     QPointer<QGraphicsScene> scene; // GraphicsScene to display images (smart pointer)
     Playlist playlist; // structure containing images and useful information
+    SlideshowTimer slideshowTimer; // structure containing timer and its properties
 };
 
 #endif // SLIDESHOWCONTAINER_H
