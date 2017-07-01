@@ -41,7 +41,7 @@ void Slideshow::browse() {
 
 void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
     slideshowTimer.timer.stop(); // stop timer if any
-    if(!playlist.images.empty()) { // check if vector was already allocated, if so erase it
+    if(!playlist.images.empty()) { // check if vector was already allocated, if so clear it
         playlist.images.clear();
     }
     qInfo() << "Scanning directory: " + text;
@@ -83,6 +83,7 @@ void Slideshow::displayImage() {
 
 void Slideshow::startSlideshow() {
     scene->clear();
+    ui->dotsContainer->setDots(this, playlist.imagesCount); // set image indicators
     playlist.currentImage = 0;
     auto firstImg = playlist.images[playlist.currentImage].get();
     for(auto itr=playlist.images.begin(); itr!=playlist.images.end(); itr++)

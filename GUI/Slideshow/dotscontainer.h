@@ -17,7 +17,7 @@ public:
     void setDots(const Slideshow* slideshow, const int &imgNumber);
 
 private:
-    std::vector<QWidget*> dots;
+    std::vector<std::shared_ptr<QWidget>> dots;
 };
 
 
