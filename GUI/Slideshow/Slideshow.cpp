@@ -1,11 +1,10 @@
-#include "slideshow.h"
+#include "Slideshow.h"
 #include "SlideshowDebug/ui_slideshow.h"
 #include "Utils.h"
 
 Slideshow::Slideshow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Slideshow),
-    scene(new QGraphicsScene(this))
+    ui(new Ui::Slideshow)
 {
     ui->setupUi(this);
     int playerWidth = ui->imageView->width(), playerHeight = ui->imageView->height();
@@ -13,9 +12,6 @@ Slideshow::Slideshow(QWidget *parent) :
 
     connect(ui->browseBtn, &QAbstractButton::clicked, this, &Slideshow::browse); // connect browse button click with browse() function
     connect(ui->dirBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), this, &Slideshow::setPlaylist); // connect changes in comboBox with displayPlaylist() function passing its text
-    connect(&slideshowTimer.timer, &QTimer::timeout, this, &Slideshow::displayImage); // connect changes in comboBox with displayPlaylist() function passing its text
-
-    ui->imageView->setScene(scene); // connect GraphicsView to GraphicsScene
 }
 
 Slideshow::~Slideshow() {
@@ -23,7 +19,7 @@ Slideshow::~Slideshow() {
 }
 
 void Slideshow::browse() {
-    slideshowTimer.timer.stop(); // stop timer if any
+    ui->imageView->stopSlideshow(); // stop slideshow if running
     QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Choose images directory"), QDir::homePath()));
     if(getImagesInFolder(directory).count()) { // check for empty directory
         if (!directory.isEmpty()) {
@@ -40,7 +36,7 @@ void Slideshow::browse() {
 }
 
 void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
-    slideshowTimer.timer.stop(); // stop timer if any
+    ui->imageView->stopSlideshow(); // stop slideshow if running
     if(!playlist.images.empty()) { // check if vector was already allocated, if so clear it
         playlist.images.clear();
     }
@@ -70,31 +66,7 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
             qCritical() << e.what();
         }
     }
-    startSlideshow();
-}
 
-void Slideshow::displayImage() {
-    // display image in GraphicsView
-    playlist.images[playlist.currentImage].get()->setVisible(false); // hide previous image
-    setNextImage();
-    setSceneRect(playlist.images[playlist.currentImage].get()->boundingRect()); // adjust scene dimension to fit current image
-    playlist.images[playlist.currentImage].get()->setVisible(true); // show current image
-}
-
-void Slideshow::startSlideshow() {
-    scene->clear();
     ui->dotsContainer->setDots(this, playlist.imagesCount); // set image indicators
-    playlist.currentImage = 0;
-    auto firstImg = playlist.images[playlist.currentImage].get();
-    for(auto itr=playlist.images.begin(); itr!=playlist.images.end(); itr++)
-        scene->addItem((*itr).get());
-    setSceneRect(firstImg->boundingRect());
-    firstImg->setVisible(true);
-    slideshowTimer.timer.start(slideshowTimer.timerInterval);
-}
-
-void Slideshow::setNextImage() {
-    playlist.currentImage++;
-    if(playlist.currentImage >= playlist.imagesCount)
-        playlist.currentImage = 0;
+    ui->imageView->startSlideshow(playlist);
 }

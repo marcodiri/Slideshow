@@ -7,7 +7,7 @@
 
 
 #include <QtWidgets>
-#include "slideshow.h"
+#include "Slideshow.h"
 
 class DotsContainer : public QWidget {
 public:

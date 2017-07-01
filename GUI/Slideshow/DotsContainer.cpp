@@ -2,11 +2,12 @@
 // Container for slideshow dots indicator.
 //
 
-#include "dotscontainer.h"
+#include "DotsContainer.h"
 
 DotsContainer::DotsContainer(QWidget *parent) : QWidget(parent) {}
 
 DotsContainer::~DotsContainer() {
+
 }
 
 void DotsContainer::setDots(const Slideshow* slideshow, const int &imgNumber) {

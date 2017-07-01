@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include "GUI/Slideshow/slideshow.h"
+#include "GUI/Slideshow/Slideshow.h"
 
 int main(int argc, char *argv[])
 {

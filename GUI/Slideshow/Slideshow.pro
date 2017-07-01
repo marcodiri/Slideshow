@@ -24,13 +24,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    dotscontainer.cpp \
-    slideshow.cpp \
-    ../../main.cpp
+    ../../main.cpp \
+    Slideshow.cpp \
+    ImageView.cpp \
+    DotsContainer.cpp
 
 HEADERS += \
-    dotscontainer.h \
-    slideshow.h
+    Slideshow.h \
+    ImageView.h \
+    DotsContainer.h
 
 FORMS += \
-    slideshow.ui
+    Slideshow.ui
