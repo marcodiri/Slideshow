@@ -8,8 +8,7 @@ namespace Ui {
 class Slideshow;
 }
 
-class Slideshow : public QWidget
-{
+class Slideshow : public QWidget {
     Q_OBJECT
 
 public:

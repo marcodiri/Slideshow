@@ -4,10 +4,10 @@
 
 #include "DotsContainer.h"
 
-DotsContainer::DotsContainer(QWidget *parent) : QWidget(parent) {}
+DotsContainer::DotsContainer(QWidget *parent, ImageView* view) : QWidget(parent), imageView(view) {}
 
 DotsContainer::~DotsContainer() {
-
+    imageView->unsubscribe(this);
 }
 
 void DotsContainer::setDots(const Slideshow* slideshow, const int &imgNumber) {
@@ -17,7 +17,14 @@ void DotsContainer::setDots(const Slideshow* slideshow, const int &imgNumber) {
         dots.push_back(std::make_shared<QRadioButton>(""));
         layout->insertWidget(i+1,dots[i].get());
     }
-    QRadioButton* firstDot = dynamic_cast<QRadioButton*>(dots[0].get());
-    if(firstDot)
-        firstDot->setChecked(true);
+}
+
+void DotsContainer::checkDot(const int &index) {
+    QRadioButton* dot = dynamic_cast<QRadioButton*>(dots[index].get());
+    if(dot)
+        dot->setChecked(true);
+}
+
+void DotsContainer::update() {
+    checkDot(imageView->getCurrentImage());
 }

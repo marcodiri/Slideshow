@@ -9,6 +9,7 @@ Slideshow::Slideshow(QWidget *parent) :
     ui->setupUi(this);
     int playerWidth = ui->imageView->width(), playerHeight = ui->imageView->height();
     playerMinDimension = playerWidth < playerHeight ? playerWidth : playerHeight;
+    ui->dotsContainer->setImageView(ui->imageView); // setup Observer
 
     connect(ui->browseBtn, &QAbstractButton::clicked, this, &Slideshow::browse); // connect browse button click with browse() function
     connect(ui->dirBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), this, &Slideshow::setPlaylist); // connect changes in comboBox with displayPlaylist() function passing its text
