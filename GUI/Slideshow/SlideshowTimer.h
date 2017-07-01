@@ -5,13 +5,13 @@
 #ifndef SLIDESHOW_SLIDESHOWTIMER_H
 #define SLIDESHOW_SLIDESHOWTIMER_H
 
-#include <QtCore/QBasicTimer>
+#include <QtCore/QTimer>
 
 struct SlideshowTimer {
-    explicit SlideshowTimer(int t=5000) : timerInteval(t) {}
+    explicit SlideshowTimer(int t=5000) : timerInterval(t) {}
 
-    QBasicTimer timer;
-    int timerInteval;
+    QTimer timer;
+    int timerInterval;
 };
 
 #endif //SLIDESHOW_SLIDESHOWTIMER_H
