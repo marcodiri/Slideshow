@@ -20,7 +20,7 @@ Slideshow::~Slideshow() {
 }
 
 void Slideshow::browse() {
-    ui->imageView->stopSlideshow(); // stop slideshow if running
+    ui->imageView->stopSlideshow(); // stop slideshow if running // FIXME: resume if direcotry is empty and a slideshow was running
     QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Choose images directory"), QDir::homePath()));
     if(getImagesInFolder(directory).count()) { // check for empty directory
         if (!directory.isEmpty()) {
@@ -44,6 +44,7 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
     qInfo() << "Scanning directory: " + text;
     QFileInfoList imagesList = getImagesInFolder(text); // get images list
     playlist.imagesCount = imagesList.count(); // get number of images in the list
+    ui->imgCount->setText((QString::number(playlist.imagesCount)));
     QListIterator<QFileInfo> itr(imagesList); // iterate images list
     QString imageDir;
     QPixmap img;
