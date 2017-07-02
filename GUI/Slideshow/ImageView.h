@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QPointer>
+#include <QDebug>
 #include "Playlist.h"
 #include "SlideshowTimer.h"
 #include "../../Subject.h"
@@ -21,8 +22,9 @@ public:
         return playlist->currentImage;
     }
 
-    void startSlideshow(Playlist& playlist); // start the slideshow
-    void stopSlideshow(); // stop the timer if running
+    void startSlideshow(Playlist* playlist) throw(std::invalid_argument); // start the slideshow
+    void startSlideshow() throw(std::invalid_argument); // start the timer
+    void stopSlideshow(); // stop the timer
     void setNextImage() const; // set the playlist to the next image
     SlideshowTimer slideshowTimer; // structure containing timer and its properties
 
@@ -34,6 +36,8 @@ public:
 
 public slots:
     void displayImage(); // function called on timer event
+    void showNextImage(); // show the next image in the playlist
+    void showPreviousImage(); // show the previous image in the playlist
 
 private:
     QPointer<QGraphicsScene> scene; // GraphicsScene to display images (smart pointer)

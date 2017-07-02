@@ -8,11 +8,14 @@ Slideshow::Slideshow(QWidget *parent) :
 {
     ui->setupUi(this);
     int playerWidth = ui->imageView->width(), playerHeight = ui->imageView->height();
-    playerMinDimension = playerWidth < playerHeight ? playerWidth : playerHeight;
+    playerMinDimension = (playerWidth < playerHeight ? playerWidth : playerHeight)-2; // -2 not to count the borders
+    ui->dotsContainer->setEnabled(false); // disable the indicators checkbox, enable if you want to change image clicking on the indicators (not implemented yet)
     ui->dotsContainer->setImageView(ui->imageView); // setup Observer
 
     connect(ui->browseBtn, &QAbstractButton::clicked, this, &Slideshow::browse); // connect browse button click with browse() function
     connect(ui->dirBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), this, &Slideshow::setPlaylist); // connect changes in comboBox with displayPlaylist() function passing its text
+    connect(ui->moveBtnForward, &QAbstractButton::clicked, ui->imageView, &ImageView::showNextImage); // connect moveForward button with the imageView
+    connect(ui->moveBtnBackward, &QAbstractButton::clicked, ui->imageView, &ImageView::showPreviousImage); // connect moveBackward button with the imageView
 }
 
 Slideshow::~Slideshow() {
@@ -20,7 +23,7 @@ Slideshow::~Slideshow() {
 }
 
 void Slideshow::browse() {
-    ui->imageView->stopSlideshow(); // stop slideshow if running // FIXME: resume if direcotry is empty and a slideshow was running
+    ui->imageView->stopSlideshow(); // stop slideshow if running // FIXME: resume if directory is empty and a slideshow was running
     QString directory = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Choose images directory"), QDir::homePath()));
     if(getImagesInFolder(directory).count()) { // check for empty directory
         if (!directory.isEmpty()) {
@@ -70,5 +73,9 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
     ui->imgCount->setText((QString::number(playlist.imagesCount)));
 
     ui->dotsContainer->setDots(this, playlist.imagesCount); // set image indicators
-    ui->imageView->startSlideshow(playlist);
+    try {
+        ui->imageView->startSlideshow(&playlist);
+    } catch (std::invalid_argument& e) {
+        qDebug() << e.what();
+    }
 }
