@@ -3,7 +3,8 @@ project(Slideshow)
 
 set(CMAKE_CXX_STANDARD 11)
 
-#For a basic project, you should probably only need to edit these variables
+#You should probably only need to edit block
+#Edit this variables based on your OS and your installation path
 if(WIN32)
     message(STATUS "Configuring for Windows")
     #Base QT directory

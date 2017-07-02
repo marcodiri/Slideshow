@@ -57,21 +57,26 @@ void ImageView::setNextImage() const {
 }
 
 void ImageView::showNextImage() {
-    stopSlideshow();
-    displayImage();
-    startSlideshow();
+    if(slideshowTimer.timer.isActive()) {
+        stopSlideshow();
+        displayImage();
+        startSlideshow();
+    }
 }
 
 void ImageView::showPreviousImage() {
-    stopSlideshow();
-    playlist->images[playlist->currentImage].get()->setVisible(false); // hide previous image
-    playlist->currentImage--;
-    if(playlist->currentImage < 0)
-        playlist->currentImage = playlist->imagesCount-1;
-    scene->setSceneRect(playlist->images[playlist->currentImage].get()->boundingRect()); // adjust scene dimension to fit current image
-    playlist->images[playlist->currentImage].get()->setVisible(true); // show current image
-    notify();
-    startSlideshow();
+    if(slideshowTimer.timer.isActive()) {
+        stopSlideshow();
+        playlist->images[playlist->currentImage].get()->setVisible(false); // hide previous image
+        playlist->currentImage--;
+        if (playlist->currentImage < 0)
+            playlist->currentImage = playlist->imagesCount - 1;
+        scene->setSceneRect(
+                playlist->images[playlist->currentImage].get()->boundingRect()); // adjust scene dimension to fit current image
+        playlist->images[playlist->currentImage].get()->setVisible(true); // show current image
+        notify();
+        startSlideshow();
+    }
 }
 
 void ImageView::subscribe(Observer *o) {

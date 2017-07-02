@@ -25,13 +25,10 @@ public:
     void startSlideshow(Playlist* playlist) throw(std::invalid_argument); // start the slideshow
     void startSlideshow() throw(std::invalid_argument); // start the timer
     void stopSlideshow(); // stop the timer
-    void setNextImage() const; // set the playlist to the next image
     SlideshowTimer slideshowTimer; // structure containing timer and its properties
 
     virtual void subscribe(Observer *o) override;
-
     virtual void unsubscribe(Observer *o) override;
-
     virtual void notify() override;
 
 public slots:
@@ -40,6 +37,7 @@ public slots:
     void showPreviousImage(); // show the previous image in the playlist
 
 private:
+    void setNextImage() const; // set the playlist to the next image
     QPointer<QGraphicsScene> scene; // GraphicsScene to display images (smart pointer)
     Playlist* playlist;
     std::list<Observer*> observers;
