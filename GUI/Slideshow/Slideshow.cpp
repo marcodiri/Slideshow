@@ -43,8 +43,6 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
     }
     qInfo() << "Scanning directory: " + text;
     QFileInfoList imagesList = getImagesInFolder(text); // get images list
-    playlist.imagesCount = imagesList.count(); // get number of images in the list
-    ui->imgCount->setText((QString::number(playlist.imagesCount)));
     QListIterator<QFileInfo> itr(imagesList); // iterate images list
     QString imageDir;
     QPixmap img;
@@ -58,7 +56,7 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
                 playlist.images.back().get()->setVisible(false); // hide every item
             }
             else
-                throw (std::runtime_error("Missing file "+imageDir.toStdString()));
+                throw std::runtime_error("Missing file "+imageDir.toStdString()+" or image is too large");
         } catch (std::runtime_error& e) {
             qCritical() << e.what();
         } catch(std::bad_alloc& e) {
@@ -68,6 +66,8 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
             qCritical() << e.what();
         }
     }
+    playlist.imagesCount = playlist.images.size(); // get number of images in the list
+    ui->imgCount->setText((QString::number(playlist.imagesCount)));
 
     ui->dotsContainer->setDots(this, playlist.imagesCount); // set image indicators
     ui->imageView->startSlideshow(playlist);

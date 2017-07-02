@@ -34,13 +34,16 @@ set(QT_LIBRARIES_REQUIRED Qt5Core Qt5Widgets Qt5Gui)
 set(QT_GENERATED qtGenerated)
 add_custom_target(${QT_GENERATED})
 #Get all header files in the directory
-file(GLOB QT_GEN_HEADERS ${QT_BIN}/ui_*.h)
+file(GLOB QT_GEN_HEADERS ${QT_BIN}/*.h ${QT_BIN}/debug/*.h)
 #Copy them to the project dir
+#[[
 foreach(QT_GEN_HEADERS ${QT_GEN_HEADERS})
     add_custom_command(TARGET ${QT_GENERATED} PRE_BUILD COMMAND
             ${CMAKE_COMMAND} -E copy_if_different
             ${QT_GEN_HEADERS} ${CMAKE_SOURCE_DIR})
 endforeach()
+]]
+
 
 #Build tool paths
 if(WIN32)

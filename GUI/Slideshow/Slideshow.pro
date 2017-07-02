@@ -27,12 +27,15 @@ SOURCES += \
     ../../main.cpp \
     Slideshow.cpp \
     ImageView.cpp \
-    DotsContainer.cpp
+    DotsContainer.cpp \
 
 HEADERS += \
     Slideshow.h \
     ImageView.h \
-    DotsContainer.h
+    DotsContainer.h \
 
 FORMS += \
     Slideshow.ui
+
+RESOURCES += \
+    slideshow.qrc

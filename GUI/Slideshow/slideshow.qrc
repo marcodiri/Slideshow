@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/indicator_unchecked.png</file>
+        <file>images/indicator_checked.png</file>
+    </qresource>
+</RCC>
