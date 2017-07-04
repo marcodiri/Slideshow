@@ -3,28 +3,8 @@ project(Slideshow)
 
 set(CMAKE_CXX_STANDARD 11)
 
-#You should probably only need to edit block
-#Edit this variables based on your OS and your installation path
-if(WIN32)
-    message(STATUS "Configuring for Windows")
-    #Base QT directory
-    set(QT_PATH "D:/Program Files/Qt")
-    #mingw used. Probably found in ${QT_PATH}/${QT_VERSION/
-    set(QT_COMPILER_VERSION "mingw53_32")
-    #mingw tools used. Probably found in ${QT_PATH}/Tools/
-    set(QT_COMPILER_TOOLS_VERSION "mingw530_32")
-elseif(APPLE)
-    message(STATUS "Configuring for Apple")
-    #Base QT directory
-    set(QT_PATH "/Applications/Qt")
-    #clang used. Probably found in ${QT_PATH}/${QT_VERSION/
-    set(QT_COMPILER_VERSION "clang_64")
-endif()
-
 #Build output path of your QT Creator project
 set(QT_BIN "GUI/Slideshow/SlideshowDebug")
-#QT Version used, e.g. Probably found in ${QT_PATH}
-set(QT_VERSION "5.9")
 #Libraries to link to
 set(QT_LIBRARIES Qt5::Core Qt5::Widgets Qt5::Gui)
 #Libraries required. Probably the same as above minus the '::'. find_package() will be called on these
@@ -45,29 +25,7 @@ foreach(QT_GEN_HEADERS ${QT_GEN_HEADERS})
 endforeach()
 ]]
 
-
-#Build tool paths
-if(WIN32)
-    message(STATUS "Configuring tools for Windows")
-    set(QT_COMPILER "${QT_PATH}/${QT_VERSION}/${QT_COMPILER_VERSION}")
-    set(QT_COMPILER_TOOLS "${QT_PATH}/Tools/${QT_COMPILER_TOOLS_VERSION}")
-    set(QT_COMPILER_BIN ${QT_COMPILER}/bin)
-    set(CMAKE_CXX_COMPILER "${QT_COMPILER_TOOLS}/bin/g++.exe")
-    set(CMAKE_AR "${QT_COMPILER_TOOLS}/bin/ar.exe")
-    set(CMAKE_LINKER "${QT_COMPILER_TOOLS}/bin/g++.exe")
-elseif(APPLE)
-    message(STATUS "Configuring tools for Apple")
-    set(QT_COMPILER "${QT_PATH}/${QT_VERSION}/${QT_COMPILER_VERSION}")
-    set(QT_COMPILER_TOOLS "/usr")
-    set(QT_COMPILER_BIN ${QT_COMPILER}/bin)
-    set(CMAKE_CXX_COMPILER "${QT_COMPILER_TOOLS}/bin/g++")
-    set(CMAKE_AR "${QT_COMPILER_TOOLS}/bin/ar")
-    set(CMAKE_LINKER "${QT_COMPILER_TOOLS}/bin/g++")
-endif()
-
-
 #find packages
-set(CMAKE_PREFIX_PATH ${QT_COMPILER})
 foreach(QT_LIBRARIES_REQUIRED ${QT_LIBRARIES_REQUIRED})
     find_package( ${QT_LIBRARIES_REQUIRED} REQUIRED )
 endforeach()
