@@ -5,6 +5,7 @@ ImageView::ImageView(QWidget *parent) :
     scene(new QGraphicsScene(parent)),
     playlist(nullptr)
 {
+    setSlideshowTimer(slideshowTimer.timerInterval); // set timer interval to its default value
     connect(&slideshowTimer.timer, &QTimer::timeout, this, &ImageView::displayImage); // connect changes in comboBox with displayPlaylist() function passing its text
     setScene(scene); // connect GraphicsView to GraphicsScene
 }
@@ -14,6 +15,10 @@ ImageView::~ImageView() {
 
 void ImageView::stopSlideshow() {
     slideshowTimer.timer.stop();
+}
+
+void ImageView::setSlideshowTimer(int interval) {
+    slideshowTimer.timer.setInterval(interval);
 }
 
 void ImageView::displayImage() {
@@ -38,14 +43,14 @@ void ImageView::startSlideshow(Playlist* playlist) throw(std::invalid_argument) 
         notify();
     }
     if(this->playlist)
-        slideshowTimer.timer.start(slideshowTimer.timerInterval);
+        slideshowTimer.timer.start(); // start timer with the given interval
     else
         throw std::invalid_argument("Error calling startSlideshow(): passed argument is null");
 }
 
 void ImageView::startSlideshow() throw(std::invalid_argument) {
     if(this->playlist)
-        slideshowTimer.timer.start(slideshowTimer.timerInterval);
+        slideshowTimer.timer.start(); // start timer with the given interval
     else
         throw std::invalid_argument("Error calling startSlideshow(): playlist is not set, provide playlist address as function argument");
 }
@@ -89,5 +94,5 @@ void ImageView::unsubscribe(Observer *o) {
 
 void ImageView::notify() {
     for(auto itr=observers.begin(); itr!=observers.end(); itr++)
-    (*itr)->update();
+        (*itr)->update();
 }

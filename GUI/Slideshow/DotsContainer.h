@@ -13,8 +13,8 @@
 
 class DotsContainer : public QWidget, public Observer {
 public:
-    explicit DotsContainer(QWidget* parent=0, ImageView* view=0);
-    ~DotsContainer();
+    explicit DotsContainer(QWidget* parent=nullptr, ImageView* view=nullptr);
+    virtual ~DotsContainer() override;
 
     void setImageView(ImageView *imageView) {
         this->imageView = imageView;

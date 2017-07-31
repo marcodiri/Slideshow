@@ -13,7 +13,7 @@ class Slideshow : public QWidget {
 
 public:
     explicit Slideshow(QWidget *parent = 0);
-    virtual ~Slideshow();
+    virtual ~Slideshow() override;
 
 private slots:
     void browse(); // browse disk to select images folder

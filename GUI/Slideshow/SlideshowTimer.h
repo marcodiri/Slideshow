@@ -8,10 +8,10 @@
 #include <QtCore/QTimer>
 
 struct SlideshowTimer {
-    explicit SlideshowTimer(int t=5000) : timerInterval(t) {}
+    explicit SlideshowTimer(int t=2000) : timerInterval(t) {}
 
     QTimer timer;
-    int timerInterval;
+    int timerInterval; // default timer interval (milliseconds)
 };
 
 #endif //SLIDESHOW_SLIDESHOWTIMER_H
