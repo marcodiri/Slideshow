@@ -261,7 +261,7 @@ image: url(:/images/indicator_checked.png);
     </font>
    </property>
    <property name="text">
-    <string>Images directory:</string>
+    <string>Image path:</string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
@@ -272,7 +272,7 @@ image: url(:/images/indicator_checked.png);
     <rect>
      <x>150</x>
      <y>50</y>
-     <width>451</width>
+     <width>721</width>
      <height>21</height>
     </rect>
    </property>
