@@ -1,5 +1,5 @@
 #include "Slideshow.h"
-#include "SlideshowDebug/ui_slideshow.h"
+#include "ui_slideshow.h"
 #include "Utils.h"
 
 Slideshow::Slideshow(QWidget *parent) :

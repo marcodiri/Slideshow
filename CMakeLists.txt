@@ -22,7 +22,7 @@ elseif(APPLE)
 endif()
 
 #Build output path of your QT Creator project
-set(QT_BIN "GUI/Slideshow/SlideshowDebug")
+set(QT_BIN "GUI/Slideshow/")
 #QT Version used, e.g. Probably found in ${QT_PATH}
 set(QT_VERSION "5.9")
 #Libraries to link to
