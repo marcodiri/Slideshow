@@ -61,9 +61,6 @@ elseif(APPLE)
     file(GLOB QT_CPP_GENERATED ${QT_BIN}/*.cpp ${QT_BIN}/debug/*.cpp)
 endif()
 
-#Unit test
-add_subdirectory(test)
-
 set(SOURCE_FILES main.cpp GUI/Slideshow/Slideshow.cpp GUI/Slideshow/Slideshow.h GUI/Slideshow/ImageView.cpp GUI/Slideshow/ImageView.h
         GUI/Slideshow/DotsContainer.cpp GUI/Slideshow/DotsContainer.h GUI/Slideshow/Playlist.h GUI/Slideshow/SlideshowTimer.h GUI/Slideshow/Utils.h
         Subject.h Observer.h
