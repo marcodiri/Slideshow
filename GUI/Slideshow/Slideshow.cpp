@@ -40,7 +40,7 @@ void Slideshow::browse() {
     }
 }
 
-void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
+void Slideshow::setPlaylist(const QString &text) {
     ui->imageView->stopSlideshow(); // stop slideshow if running
     if(!playlist.images.empty()) { // check if vector was already allocated, if so clear it
         playlist.images.clear();
