@@ -63,7 +63,7 @@ endif()
 
 set(SOURCE_FILES main.cpp GUI/Slideshow/Slideshow.cpp GUI/Slideshow/Slideshow.h GUI/Slideshow/ImageView.cpp GUI/Slideshow/ImageView.h
         GUI/Slideshow/DotsContainer.cpp GUI/Slideshow/DotsContainer.h GUI/Slideshow/Playlist.h GUI/Slideshow/SlideshowTimer.h GUI/Slideshow/Utils.h
-        Subject.h Observer.h
+        GUI/Slideshow/ImagePath.cpp GUI/Slideshow/ImagePath.h Subject.h Observer.h
         ${QT_GEN_HEADERS} ${QT_CPP_GENERATED})
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

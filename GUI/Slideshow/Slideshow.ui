@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>891</width>
-    <height>570</height>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SlideshowContainer</string>
+   <string>Slideshow</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -26,7 +26,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>50</y>
+     <y>80</y>
      <width>854</width>
      <height>480</height>
     </rect>
@@ -54,7 +54,7 @@
    <property name="geometry">
     <rect>
      <x>860</x>
-     <y>290</y>
+     <y>320</y>
      <width>21</width>
      <height>23</height>
     </rect>
@@ -67,7 +67,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>290</y>
+     <y>320</y>
      <width>21</width>
      <height>23</height>
     </rect>
@@ -80,7 +80,7 @@
    <property name="geometry">
     <rect>
      <x>780</x>
-     <y>550</y>
+     <y>580</y>
      <width>101</width>
      <height>20</height>
     </rect>
@@ -93,7 +93,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>520</y>
+     <y>550</y>
      <width>851</width>
      <height>41</height>
     </rect>
@@ -246,6 +246,48 @@ image: url(:/images/indicator_checked.png);
     <number>0</number>
    </property>
   </widget>
+  <widget class="QLabel" name="flavText4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Images directory:</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="ImagePath" name="imgPath">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>50</y>
+     <width>451</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -259,6 +301,11 @@ image: url(:/images/indicator_checked.png);
    <class>ImageView</class>
    <extends>QGraphicsView</extends>
    <header>ImageView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ImagePath</class>
+   <extends>QLabel</extends>
+   <header>ImagePath.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

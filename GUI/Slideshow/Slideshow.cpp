@@ -11,6 +11,7 @@ Slideshow::Slideshow(QWidget *parent) :
     playerMinDimension = (playerWidth < playerHeight ? playerWidth : playerHeight)-2; // -2 not to count the borders
     ui->dotsContainer->setEnabled(false); // disable the indicators checkbox, enable if you want to change image clicking on the indicators (not implemented yet)
     ui->dotsContainer->setImageView(ui->imageView); // setup Observer
+    ui->imgPath->setImageView(ui->imageView); // setup Observer
 
     connect(ui->browseBtn, &QAbstractButton::clicked, this, &Slideshow::browse); // connect browse button click with browse() function
     connect(ui->dirBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged), this, &Slideshow::setPlaylist); // connect changes in comboBox with displayPlaylist() function passing its text
@@ -45,8 +46,8 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
         playlist.images.clear();
     }
     qInfo() << "Scanning directory: " + text;
-    QFileInfoList imagesList = getImagesInFolder(text); // get images list
-    QListIterator<QFileInfo> itr(imagesList); // iterate images list
+    playlist.imagesList = getImagesInFolder(text); // get images list
+    QListIterator<QFileInfo> itr(playlist.imagesList); // iterate images list
     QString imageDir;
     QPixmap img;
     while(itr.hasNext()) {

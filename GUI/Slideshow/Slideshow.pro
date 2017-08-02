@@ -28,11 +28,13 @@ SOURCES += \
     Slideshow.cpp \
     ImageView.cpp \
     DotsContainer.cpp \
+    ImagePath.cpp
 
 HEADERS += \
     Slideshow.h \
     ImageView.h \
     DotsContainer.h \
+    ImagePath.h
 
 FORMS += \
     Slideshow.ui

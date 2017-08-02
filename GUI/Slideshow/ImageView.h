@@ -18,8 +18,8 @@ public:
         this->playlist = playlist;
     }
 
-    const int& getCurrentImage() const {
-        return playlist->currentImage;
+    const Playlist* getPlaylist() const {
+        return playlist;
     }
 
     void startSlideshow(Playlist* playlist) throw(std::invalid_argument); // start the slideshow

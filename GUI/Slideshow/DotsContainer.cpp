@@ -26,5 +26,5 @@ void DotsContainer::checkDot(const int &index) {
 }
 
 void DotsContainer::update() {
-    checkDot(imageView->getCurrentImage());
+    checkDot(imageView->getPlaylist()->currentImage);
 }
