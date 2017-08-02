@@ -17,7 +17,7 @@ public:
 
 private slots:
     void browse(); // browse disk to select images folder
-    void setPlaylist(const QString &text) throw(std::runtime_error); // prepare playlist to be shown
+    void setPlaylist(const QString &text); // prepare playlist to be shown
 
 private:
     Ui::Slideshow *ui;

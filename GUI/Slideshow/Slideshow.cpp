@@ -57,12 +57,10 @@ void Slideshow::setPlaylist(const QString &text) throw(std::runtime_error) {
             img = QPixmap(imageDir).scaledToHeight(playerMinDimension);
             if(!img.isNull()) {
                 playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(img)); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
-                playlist.images.back().get()->setVisible(false); // hide every item
+                playlist.images.back()->setVisible(false); // hide every item
             }
             else
-                throw std::runtime_error("Missing file "+imageDir.toStdString()+" or image is too large");
-        } catch (std::runtime_error& e) {
-            qCritical() << e.what();
+                "Missing file "+imageDir.toStdString()+" or image is too large";
         } catch(std::bad_alloc& e) {
             qCritical() << "Error allocating file " + imageDir;
         } catch(std::exception& e) {
