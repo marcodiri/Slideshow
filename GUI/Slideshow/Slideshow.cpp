@@ -60,7 +60,7 @@ void Slideshow::setPlaylist(const QString &text) {
                 playlist.images.back()->setVisible(false); // hide every item
             }
             else
-                "Missing file "+imageDir.toStdString()+" or image is too large";
+                qCritical() << "Missing file " + imageDir + " or image is too large";
         } catch(std::bad_alloc& e) {
             qCritical() << "Error allocating file " + imageDir;
         } catch(std::exception& e) {
