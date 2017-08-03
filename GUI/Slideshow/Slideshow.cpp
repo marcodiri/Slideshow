@@ -44,20 +44,24 @@ void Slideshow::setPlaylist(const QString &text) {
     ui->imageView->stopSlideshow(); // stop slideshow if running
     if(!playlist.images.empty()) { // check if vector was already allocated, if so clear it
         playlist.images.clear();
+        playlist.imagesList.clear();
     }
     qInfo() << "Scanning directory: " + text;
-    playlist.imagesList = getImagesInFolder(text); // get images list
-    QListIterator<QFileInfo> itr(playlist.imagesList); // iterate images list
+    QFileInfoList imagesList = getImagesInFolder(text); // get images list
+    QListIterator<QFileInfo> itr(imagesList); // iterate images list
+    QFileInfo imgInfo;
     QString imageDir;
     QPixmap img;
     while(itr.hasNext()) {
-        imageDir = itr.next().absoluteFilePath(); // get image absolute path
+        imgInfo = itr.next();
+        imageDir = imgInfo.absoluteFilePath(); // get image absolute path
         qInfo() << "Adding file: " + imageDir;
         try {
-            img = QPixmap(imageDir).scaledToHeight(playerMinDimension);
+            img = QPixmap(imageDir); // create QPixmap from image
             if(!img.isNull()) {
-                playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(img)); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
+                playlist.images.push_back(std::make_shared<QGraphicsPixmapItem>(img.scaledToHeight(playerMinDimension))); // create a new GraphicsPixmapItem for each file and push it in images vector (smart pointer)
                 playlist.images.back()->setVisible(false); // hide every item
+                playlist.imagesList.push_back(imgInfo); // save image info
             }
             else
                 qCritical() << "Missing file " + imageDir + " or image is too large";
