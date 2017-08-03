@@ -22,6 +22,93 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
+  <widget class="ImagePath" name="imgPath">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>50</y>
+     <width>721</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="DotsContainer" name="dotsContainer" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>550</y>
+     <width>851</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton::indicator{
+width: 7px;
+height: 7px;
+border: none;
+}
+
+QRadioButton::indicator::unchecked {
+image: url(:/images/indicator_unchecked.png);
+}
+
+QRadioButton::indicator::checked{
+image: url(:/images/indicator_checked.png);
+}</string>
+   </property>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>851</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>408</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer1">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>438</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <widget class="ImageView" name="imageView">
    <property name="geometry">
     <rect>
@@ -88,72 +175,6 @@
    <property name="text">
     <string>Marco Di Rienzo</string>
    </property>
-  </widget>
-  <widget class="DotsContainer" name="dotsContainer" native="true">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>550</y>
-     <width>851</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QRadioButton::indicator{
-width: 7px;
-height: 7px;
-border: none; 
-}
-
-QRadioButton::indicator::unchecked {
-image: url(:/images/indicator_unchecked.png);
-}
-
-QRadioButton::indicator::checked{
-image: url(:/images/indicator_checked.png);
-}</string>
-   </property>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>851</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>408</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer1">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>438</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <widget class="QComboBox" name="dirBox">
    <property name="geometry">
@@ -265,27 +286,6 @@ image: url(:/images/indicator_checked.png);
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="ImagePath" name="imgPath">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>50</y>
-     <width>721</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="margin">
-    <number>0</number>
    </property>
   </widget>
  </widget>

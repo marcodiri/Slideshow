@@ -15,8 +15,8 @@ public:
     explicit ImagePath(QWidget* parent=nullptr, ImageView* view=nullptr);
     virtual ~ImagePath() override;
 
-    void setImageView(ImageView *imageView) {
-        this->imageView = imageView;
+    void setImageView(ImageView *imgView) {
+        imageView = imgView;
         imageView->subscribe(this);
     }
 

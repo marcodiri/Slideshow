@@ -16,8 +16,8 @@ public:
     explicit DotsContainer(QWidget* parent=nullptr, ImageView* view=nullptr);
     virtual ~DotsContainer() override;
 
-    void setImageView(ImageView *imageView) {
-        this->imageView = imageView;
+    void setImageView(ImageView *imgView) {
+        imageView = imgView;
         imageView->subscribe(this);
     }
 
