@@ -43,7 +43,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="DotsContainer" name="dotsContainer" native="true">
+  <widget class="DotsContainer" name="dotsContainer">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -282,7 +282,7 @@ image: url(:/images/indicator_checked.png);
     </font>
    </property>
    <property name="text">
-    <string>Image path:</string>
+    <string>Image name:</string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
@@ -292,12 +292,6 @@ image: url(:/images/indicator_checked.png);
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>DotsContainer</class>
-   <extends>QWidget</extends>
-   <header>dotscontainer.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ImageView</class>
    <extends>QGraphicsView</extends>
    <header>ImageView.h</header>
@@ -306,6 +300,12 @@ image: url(:/images/indicator_checked.png);
    <class>ImagePath</class>
    <extends>QLabel</extends>
    <header>ImagePath.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DotsContainer</class>
+   <extends>QFrame</extends>
+   <header>DotsContainer.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

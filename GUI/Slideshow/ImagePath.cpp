@@ -15,6 +15,6 @@ void ImagePath::setLabelText(const QString &text) {
 }
 
 void ImagePath::update() {
-    QString imgPath = imageView->getPlaylist()->imagesList[imageView->getPlaylist()->currentImage].absoluteFilePath(); // get current image file path
+    QString imgPath = imageView->getPlaylist()->imagesList[imageView->getPlaylist()->currentImage].fileName(); // get current image file path
     setLabelText(imgPath);
 }
